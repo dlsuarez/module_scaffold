@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+    <data>
+
+        <!-- res.partner -->
+
+        <record id="act_res_partner_2_pets" model="ir.actions.act_window">
+            <field name="name">Pets</field>
+            <field name="res_model">res.pet</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="domain">[('partner_id', '=', active_id)]</field>
+            <field name="context">{
+                'default_partner_id': active_id,
+                'search_default_partner_id': active_id,
+            }</field>
+            <field name="groups_id" eval="[(4, ref('base.group_user'))]"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to register a pet for this customer.
+                </p>
+            </field>
+        </record>
+
+        <record id="res_partner_view_buttons" model="ir.ui.view">
+            <field name="name">res.partner.view.buttons</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="priority" eval="20"/>
+            <field name="groups_id" eval="[(4, ref('base.group_user'))]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='buttons']" position="inside">
+                    <button class="oe_inline oe_stat_button" type="action" name="%(module_scaffold.act_res_partner_2_pets)d" 
+                        attrs="{'invisible': [('customer', '=', False)]}"
+                        icon="fa-cloud">
+                        <field string="Pets" name="pets_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+
+</openerp>

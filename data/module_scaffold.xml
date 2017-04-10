@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+    <data>
+
+        <template id="assets_backend" name="module_scaffold assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/module_scaffold/static/src/css/module_scaffold.css" />
+                <script type="text/javascript" src="/module_scaffold/static/src/js/module_scaffold.js"></script>
+            </xpath>
+        </template>
+
+    </data>
+
+</openerp>

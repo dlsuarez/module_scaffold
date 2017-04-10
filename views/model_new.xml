@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+    <data>
+
+        <!-- res.pet -->
+
+        <record id="res_pet_view_tree" model="ir.ui.view">
+            <field name="name">res.pet.tree</field>
+            <field name="model">res.pet</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Pets">
+                    <field name="name"/>
+                    <field name="partner"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="res_pet_view_form" model="ir.ui.view">
+            <field name="name">res.pet.form</field>
+            <field name="model">res.pet</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Web domain">
+                    <sheet>
+                        <field name="name"/>
+                        <field name="partner"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="act_res_partner_2_pets" model="ir.actions.act_window">
+            <field name="name">Pets</field>
+            <field name="res_model">res.pet</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="domain">[('partner', '=', active_id)]</field>
+            <field name="context">{
+                'default_partner': active_id,
+                'search_default_partner': active_id,
+            }</field>
+            <field name="groups_id" eval="[(4, ref('base.group_user'))]"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to register a pet for this customer.
+                </p>
+            </field>
+        </record>
+
+    </data>
+
+</openerp>
